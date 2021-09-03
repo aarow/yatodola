@@ -1,38 +1,19 @@
-.App {
-  text-align: center;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[class*="btn"] {
+  @apply border border-black text-white bg-black px-8 py-2 leading-6;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.btn-small {
+  @apply px-5 py-2 leading-4;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.btn-primary {
+  @apply border-blue-600 bg-blue-600;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-delete {
+  @apply border-red-600 bg-red-600 hover:bg-red-600 text-white;
 }
