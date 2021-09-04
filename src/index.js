@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 import App from "./App";
+import { prisma } from ".prisma/client";
 
 const queryClient = new QueryClient();
 
