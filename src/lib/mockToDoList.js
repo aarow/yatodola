@@ -1,4 +1,4 @@
-export const mockData = [
+export const toDoList = [
   {
     id: 1,
     title: "foo",

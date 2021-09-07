@@ -1,7 +1,7 @@
 import { useEditToDo, useRemoveAddToDo } from "../lib/apiHooks";
 
 export default function ToDoItem(props) {
-  const { id, isDone, title } = props;
+  const { id, isDone, title, custom_order } = props;
   const editToDo = useEditToDo();
   const removeToDo = useRemoveAddToDo();
 
@@ -10,6 +10,7 @@ export default function ToDoItem(props) {
       id,
       isDone: !isDone,
       title,
+      custom_order,
     });
   };
 
@@ -18,7 +19,7 @@ export default function ToDoItem(props) {
   };
 
   return (
-    <div className="flex justify-between">
+    <div className="todo flex justify-between">
       <label htmlFor={title} className={isDone ? "line-through" : ""}>
         <span>
           <input
