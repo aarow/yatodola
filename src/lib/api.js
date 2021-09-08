@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createClient } from "graphqurl";
 
 const client = createClient({
@@ -7,6 +8,36 @@ const client = createClient({
       "3YmrPlLP4MICz9gpJEHz47gOigkjVPNZ6jHIi3oTgyZhCONGkNABvT7LoW5bsnqT",
   },
 });
+
+export const getToDoList = () => {
+  return axios
+    .get(`/.netlify/functions/todo`)
+    .then(({ data }) => data)
+    .catch((error) =>
+      console.error("error  src/lib/api.js/getToDoListQuery()", error)
+    );
+
+  // return client
+  //   .query({
+  //     query: `query
+  //     {
+  //       ToDo(where: {active: {_eq: true}}, order_by: {created_at: desc}) {
+  //         id
+  //         isDone
+  //         title
+  //         created_at,
+  //         guid
+  //       }
+  //     }`,
+  //   })
+  //   .then((response) => {
+  //     // console.log(response.data.ToDo);
+  //     return response.data.ToDo;
+  //   })
+  //   .catch((error) =>
+  //     console.error("error  src/lib/api.js/getToDoListQuery()", error)
+  //   );
+};
 
 export const getToDoListOrder = () => {
   return client
@@ -25,28 +56,6 @@ export const getToDoListOrder = () => {
     );
 };
 
-export const getToDoList = () => {
-  return client
-    .query({
-      query: `query 
-      { 
-        ToDo(where: {active: {_eq: true}}, order_by: {created_at: desc}) {
-          id
-          isDone
-          title
-          created_at,
-          guid
-        } 
-      }`,
-    })
-    .then((response) => {
-      // console.log(response.data.ToDo);
-      return response.data.ToDo;
-    })
-    .catch((error) =>
-      console.error("error  src/lib/api.js/getToDoListQuery()", error)
-    );
-};
 export async function addToDo(toDoTitle) {
   return client
     .query({
