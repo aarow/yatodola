@@ -18,7 +18,6 @@ export const getToDoListOrder = () => {
       }`,
     })
     .then((response) => {
-      // console.log(response.data.User[0].to_do_items);
       return response.data.User[0].to_do_items;
     })
     .catch((error) =>
@@ -42,10 +41,7 @@ export const getToDoList = () => {
     })
     .then((response) => {
       // console.log(response.data.ToDo);
-
-      return response.data.ToDo.map((toDoItem, index) => {
-        return { ...toDoItem, custom_order: index };
-      });
+      return response.data.ToDo;
     })
     .catch((error) =>
       console.error("error  src/lib/api.js/getToDoListQuery()", error)
@@ -107,24 +103,20 @@ export async function editToDo(toDoItem) {
       query: `mutation ToggleToDo(
           $id: Int!, 
           $isDone: Boolean,
-          $custom_order: Int!
           $title: String!
         ) {
         update_ToDo_by_pk(pk_columns: {id: $id}, _set: {
           isDone: $isDone,
-          custom_order: $custom_order,
           title: $title
         }) {
           isDone
           id
           title
-          custom_order
         }
       }`,
       variables: {
         id: toDoItem.id,
         isDone: toDoItem.isDone,
-        custom_order: toDoItem.custom_order,
         title: toDoItem.title,
       },
     })
@@ -145,6 +137,34 @@ export async function reorderToDoList(toDoListOrderArray) {
       variables: {
         id: "d7afff96-b70d-4b91-b173-c53f3205ba4d",
         to_do_items: toDoListOrderArray,
+      },
+    })
+    .catch((error) =>
+      console.error("error  src/lib/api.js/toggleToDo()", error)
+    );
+}
+
+export async function checkAll(toDoItem) {
+  return client
+    .query({
+      query: `mutation ToggleToDo(
+          $id: Int!, 
+          $isDone: Boolean,
+          $title: String!
+        ) {
+        update_ToDo_by_pk(pk_columns: {id: $id}, _set: {
+          isDone: $isDone,
+          title: $title
+        }) {
+          isDone
+          id
+          title
+        }
+      }`,
+      variables: {
+        id: toDoItem.id,
+        isDone: toDoItem.isDone,
+        title: toDoItem.title,
       },
     })
     .catch((error) =>

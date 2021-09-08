@@ -1,3 +1,50 @@
+
+# To Do List
+
+## Description
+Standard to do list app with additions for server/state management. Features include: 
+* Create items
+* List of items
+* Check/Uncheck items
+* Delete items
+* App is real time with database hosting
+
+## Technology
+
+### Data
+For this project, I set up a postgres server on [Heroku](https://heroku.com) and manage it via [hasura](https://hasura.io/). Hasura offers a nice [graphql](https://graphql.org/) service to allow this app to persist data across the net.
+
+### Development
+Browser client written in [Reactjs](https://reactjs.org). Utilizes [react-query](https://react-query.tanstack.com/) for state management and reactive querying abstraction--the client is allowed to react to input immediately while react-query handles caching and refreshing.
+
+### Libraries
+* UI: [Tailwind](https://tailwindcss.com/)
+* Icons: [Material-UI](https://material-ui.com/components/material-icons/)
+* App: [Reactjs](https://reactjs.org)
+* State: [react-query](https://react-query.tanstack.com/)
+
+## Config
+Admittedly, I did not complete securing this app, so it will have to be fixed asap or die. As for today, the app is deployed via [Netlify](https://netlify.io) continuous deployment integration with GitHub.
+
+Schema is located within `/prisma/` directory which I had [hasura](https://hasura.io/) automatically build on [Heroku](https://heroku.com).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

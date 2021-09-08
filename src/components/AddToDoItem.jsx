@@ -1,4 +1,6 @@
 import React, { useState, useRef } from "react";
+import PlaylistAddTwoToneIcon from "@material-ui/icons/PlaylistAddTwoTone";
+
 import { useAddToDo } from "../lib/apiHooks";
 
 export default function AddToDoItem(props) {
@@ -7,14 +9,16 @@ export default function AddToDoItem(props) {
   const titleRef = useRef(null);
 
   const handleAdd = () => {
-    toDoTitle.trim() !== "" &&
-      addToDo.mutate(toDoTitle, {
-        onSuccess,
-      });
-  };
+    if (toDoTitle.trim() === "") return;
 
-  const onSuccess = () => {
+    const newToDoTitle = toDoTitle;
     setToDoTitle("");
+
+    addToDo.mutate(newToDoTitle, {
+      onError: (newToDoTitle) => {
+        setToDoTitle(newToDoTitle);
+      },
+    });
   };
 
   const handleKeyDown = (e) => {
@@ -25,19 +29,22 @@ export default function AddToDoItem(props) {
   };
 
   return (
-    <div>
-      <span>
-        <input
-          ref={titleRef}
-          type="text"
-          onKeyDown={handleKeyDown}
-          value={toDoTitle}
-          onChange={(e) => setToDoTitle(e.currentTarget.value)}
-          className="border"
-        />
-      </span>
-      <button onClick={handleAdd} className="btn-primary">
-        Add
+    <div className="flex w-full	">
+      <input
+        ref={titleRef}
+        type="text"
+        onKeyDown={handleKeyDown}
+        value={toDoTitle}
+        onChange={(e) => setToDoTitle(e.currentTarget.value)}
+        className="flex-grow border border-gray-300 rounded-tl rounded-bl py-5 px-5 focus:outline-none"
+        placeholder="Add something to your list..."
+      />
+
+      <button
+        onClick={handleAdd}
+        className="flex-grow-0 flex-shrink-0 btn border border-gray-300 bg-gray-100 text-gray-400 hover:text-gray-600 rounded-tr rounded-br -ml-px"
+      >
+        <PlaylistAddTwoToneIcon />
       </button>
     </div>
   );
