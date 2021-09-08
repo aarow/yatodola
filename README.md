@@ -4,10 +4,12 @@
 ## Description
 Live To Do List app with standard set of features. 
 
+Check out the [demo](https://yatodola.netlify.app/)!
+
 ### Features include: 
 * Create items
 * List of items
-* --Check/Uncheck items--
+* ~~Check/Uncheck items~~ :o
 * Delete items
 * App is real time with database hosting
 
