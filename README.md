@@ -2,12 +2,18 @@
 # To Do List
 
 ## Description
-Standard to do list app with additions for server/state management. Features include: 
+Live To Do List app with standard set of features. 
+
+### Features include: 
 * Create items
 * List of items
-* Check/Uncheck items
+* --Check/Uncheck items--
 * Delete items
 * App is real time with database hosting
+
+### Coming soon
+* Live custom sorting 
+* Live check/uncheck all items
 
 ## Technology
 
